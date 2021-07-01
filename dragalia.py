@@ -2,16 +2,25 @@ from core import Azure
 
 class Dragalia():
     def __init__(self):
-        self.azure = Azure()
-        self.azure.load_res("img")
         self.user_settings()
         self.default_settings()
+        self.azure = Azure(self.scale_percentage)
+        self.azure.load_res("img")
 
     # 用户设置（只需要改动这里的东西）
     def user_settings(self):
         # 要刷的龙玉（EXCEL自动生成，手动输入也行）
         self.dragon = [0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0]
 
+        # 分辨率设置（默认）
+        '''
+        1440P - 100
+        1080P - 75
+        720P - 50
+        '''
+        self.scale_percentage = 100
+
+        # 坐标设置
         self.list_quest = (1026, 1729)      # 确认所选龙玉
         self.choose_difficulty = [(736, 786), (736, 1186)]  # H 和 VH 的坐标
         self.choose_quest_1 = (720, 1160)   # 最上面的副本（1号位）

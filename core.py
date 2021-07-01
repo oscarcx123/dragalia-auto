@@ -14,8 +14,8 @@ import numpy as np
 import concurrent.futures
 
 class Azure():
-    def __init__(self):
-        self.scale_percentage = 100
+    def __init__(self, scale_percentage):
+        self.scale_percentage = scale_percentage
         self.threshold = 0.9
         self.debug = False
 
