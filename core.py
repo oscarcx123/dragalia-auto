@@ -213,7 +213,8 @@ class Azure():
         return random.randint(coord - diff, coord + diff)
 
     def write_log(self, text):
-        print(text)
+        timestamp = time.strftime("[%H:%M:%S] ", time.localtime())
+        print(timestamp + text)
 
     # 判断文件是否为空
     def is_file_empty(self, file_name):

@@ -1,4 +1,5 @@
 from core import Azure
+import sys
 
 class Dragalia():
     def __init__(self):
@@ -10,6 +11,7 @@ class Dragalia():
     # 用户设置（只需要改动这里的东西）
     def user_settings(self):
         # 要刷的龙玉（EXCEL自动生成，手动输入也行）
+        # 使用GUI的话，会忽略这里的龙玉设置
         self.dragon = [0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0]
 
         # 分辨率设置（默认）
@@ -32,6 +34,9 @@ class Dragalia():
 
     def default_settings(self):
         self.idx_vayu = 21
+        # 从命令行获取龙玉参数（从GUI传入）
+        if len(sys.argv) == 2:
+            self.dragon = eval(sys.argv[1])
 
     def tap_tuple(self, coord):
         self.azure.tap(coord[0], coord[1])
@@ -41,7 +46,7 @@ class Dragalia():
         if self.azure.match("dragon_menu.jpg"):
             self.azure.tap()
         else:
-            print("Can't find dragon menu!")
+            raise Exception("找不到龙玉菜单，请检查是否进入了副本大地图界面!")
 
     def click_dragon(self, idx):
         self.azure.get_img()
@@ -49,12 +54,14 @@ class Dragalia():
         if len(idx) < 2:
             idx = "0" + idx
         if self.azure.match(f"dragon_{idx}.jpg"):
-            print(f"NOW dragon_{idx}")
+            self.azure.write_log(f"现在开始刷：dragon_{idx}")
             self.azure.tap()
         else:
-            print(f"Failed to match dragon_{idx}.jpg")
+            raise Exception(f"龙玉图片识别失败（dragon_{idx}.jpg）")
 
     def main(self):
+        self.azure.write_log("开始执行！")
+        self.azure.write_log(f"龙玉参数：{self.dragon}")
         for i in range(len(self.dragon)):
             if self.dragon[i] == 1:
                 for j in range(2):
@@ -108,19 +115,24 @@ class Dragalia():
                     # 打完副本并点击“继续”
                     while True:
                         self.azure.get_img()
-                        if self.azure.match("continue.jpg"):
-                            print("Quest finished!")
+                        close_msg_btn = self.azure.match("close_msg.jpg")
+                        if close_msg_btn:
+                            self.azure.write_log("检测到道具溢出，自动关闭弹出的提示框")
+                            self.azure.tap()
+                            self.azure.sleep(3)
+                        
+                        continue_btn = self.azure.match("continue.jpg")
+                        if continue_btn:
+                            self.azure.write_log("Quest finished!")
                             self.azure.tap()
                             self.azure.sleep(10)
                             break
-                        print("Waiting for quest to finish...")
+                        self.azure.write_log("等待副本攻略完成...")
                         self.azure.sleep(10)
                     
                     # 点击返回
                     self.tap_tuple(self.quest_return)
                     self.azure.sleep(5)
                     
-
-
 dragalia = Dragalia()
 dragalia.main()
