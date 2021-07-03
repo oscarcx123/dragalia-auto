@@ -23,13 +23,13 @@ class Dragalia():
         self.scale_percentage = 100
 
         # 坐标设置
-        self.list_quest = (1026, 1729)      # 确认所选龙玉
-        self.choose_difficulty = [(736, 786), (736, 1186)]  # H 和 VH 的坐标
-        self.choose_quest_1 = (720, 1160)   # 最上面的副本（1号位）
-        self.choose_quest_2 = (720, 1500)   # 中间的副本（2号位，似乎是伐由专用）
+        self.list_quest = (1026, 1729)      # “可获得任务”按钮，在选中对应龙玉后出现，用于确认所选龙玉
+        self.choose_difficulty = [(736, 786), (736, 1186)]  # “主要可获得任务”面板，H 和 VH 的坐标
+        self.choose_quest_1 = (720, 1160)   # 副本列表界面，最靠上面的副本（1号位）
+        self.choose_quest_2 = (720, 1500)   # 副本列表界面，中间的副本（2号位，似乎是伐由专用）
         self.set_multiple = (1230, 1760)    # 反复攻略按钮
-        self.minus = (310, 1980)            # 反复攻略次数的减号
-        self.multiple_ok = (1040, 2200)     # 确认并关闭反复攻略
+        self.minus = (310, 1980)            # “任务设置面板”中，反复攻略次数的减号
+        self.multiple_ok = (1040, 2200)     # “任务设置面板”中的“OK”键，用于确认并关闭反复攻略面板
         self.quest_return = (200, 2180)     # 从副本列表返回到大地图
 
     def default_settings(self):
