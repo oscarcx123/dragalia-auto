@@ -125,10 +125,10 @@ class Dragalia():
                         if continue_btn:
                             self.azure.write_log("Quest finished!")
                             self.azure.tap()
-                            self.azure.sleep(10)
+                            self.azure.sleep(8)
                             break
                         self.azure.write_log("等待副本攻略完成...")
-                        self.azure.sleep(10)
+                        self.azure.sleep(6)
                     
                     # 点击返回
                     self.tap_tuple(self.quest_return)

@@ -1,5 +1,6 @@
 .vscode
 __pycache__
+build
 dist
 screenshot.png
 conf.json

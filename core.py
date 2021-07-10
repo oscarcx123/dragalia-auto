@@ -8,7 +8,6 @@ import os
 import cv2
 import time
 import random
-import traceback
 import subprocess
 import numpy as np
 import concurrent.futures
@@ -145,7 +144,6 @@ class Azure():
         self.exec_cmd(cmd)
 
     # 滑动 / 长按
-    # 本函数仅用于debug
     def swipe(self, fromX=None, fromY=None, toX=None, toY=None, swipe_time=200):
         if toX is None and toY is None:
             swipe_time = 500
@@ -175,10 +173,6 @@ class Azure():
         if show_output:
             self.write_log(ret_val.decode("utf-8"))
         return ret_val
-
-    # 控制台显示执行次数
-    def show_cnt(self):
-        self.write_log(f"已重试{self.cnt}次！")
 
     # adb连接（WIFI）
     def adb_connect(self):
