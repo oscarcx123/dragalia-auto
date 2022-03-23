@@ -1,5 +1,7 @@
 # dragalia-auto
 
+2022/03/23 - 龙约真的要停服了，实在是令人唏嘘不已，希望这个IP在未来可以浴火重生。
+
 <p align="center">
   <img src="./_docs/img/mainwindow.png" alt="mainwindow" width="500"/>
   <br>
